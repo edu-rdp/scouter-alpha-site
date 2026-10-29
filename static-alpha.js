@@ -20,11 +20,11 @@
  // Rewrite rendered navigation and image URLs without exporting private source.
  function adapt(){
   document.querySelectorAll('a[href^="/"],img[src^="/"]').forEach(el=>{const attr=el.tagName==='A'?'href':'src';const value=el.getAttribute(attr);if(value)el.setAttribute(attr,local(value))});
-  document.querySelectorAll('.prediction-lab__recalculate').forEach(el=>{el.disabled=true;const text='Recálculo disponível na versão com servidor';if(el.textContent!==text)el.textContent=text});
-  document.querySelectorAll('.prediction-lab__lock').forEach(el=>{const text='Este alfa exibe os cálculos salvos. Alterar os controles não gera novas previsões.';if(el.textContent!==text)el.textContent=text});
+  document.querySelectorAll('.prediction-lab__recalculate').forEach(el=>{el.disabled=true;const text='Comparação ao vivo indisponível';if(el.textContent!==text)el.textContent=text});
+  document.querySelectorAll('.prediction-lab__lock').forEach(el=>{const text='Aqui você explora resultados salvos. Escolha uma das quatro leituras no duelo de cenários.';if(el.textContent!==text)el.textContent=text});
  }
  addEventListener('DOMContentLoaded',()=>{
-  const banner=document.createElement('div');banner.style.cssText='padding:9px 18px;background:#25266f;color:white;text-align:center;font:12px sans-serif';banner.textContent='Alfa para testes · dados salvos · sem atualização automática ou recálculo dos modelos';document.body.prepend(banner);
+  const banner=document.createElement('div');banner.style.cssText='padding:9px 18px;background:#25266f;color:white;text-align:center;font:600 12px "IBM Plex Sans",sans-serif';banner.textContent='Versão alfa · explore previsões e cenários salvos';document.body.prepend(banner);
   const style=document.createElement('style');style.textContent='.scenario-probabilities>*{display:none!important}.scenario-probabilities::before{content:"Probabilidades: o recálculo precisa do servidor Python. Neste alfa, escolha resultados para explorar a tabela simulada.";display:block;font-size:13px;line-height:1.6}';document.head.append(style);
   new MutationObserver(()=>{observerTask()}).observe(document.getElementById('root'),{childList:true,subtree:true});adapt();
  });
